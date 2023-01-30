@@ -46,11 +46,33 @@ import (
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func minArray(numbers []int) int {
-	return 0
+	if len(numbers) == 1 {
+		return numbers[0]
+	}
+	//var min int
+	// 先暴力查询一次最小的
+	//min = math.MaxInt
+	//for _, number := range numbers {
+	//	if min > number {
+	//		min = number
+	//	}
+	//}
+
+	// 排序再拿第一个
+	//sort.Ints(numbers)
+	//min = numbers[0]
+
+	// 直接迭代
+	for i := 1; i < len(numbers); i++ {
+		if numbers[i] < numbers[i-1] {
+			return numbers[i]
+		}
+	}
+	return numbers[0]
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
 
 func TestXuanZhuanShuZuDeZuiXiaoShuZiLcof(t *testing.T) {
-
+	t.Log(minArray([]int{3, 4, 5, 2}))
 }
