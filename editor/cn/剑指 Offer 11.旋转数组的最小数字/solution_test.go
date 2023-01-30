@@ -57,18 +57,37 @@ func minArray(numbers []int) int {
 	//		min = number
 	//	}
 	//}
+	//return min
 
 	// 排序再拿第一个
 	//sort.Ints(numbers)
 	//min = numbers[0]
+	//return min
 
 	// 直接迭代
-	for i := 1; i < len(numbers); i++ {
-		if numbers[i] < numbers[i-1] {
-			return numbers[i]
+	//for i := 1; i < len(numbers); i++ {
+	//	if numbers[i] < numbers[i-1] {
+	//		return numbers[i]
+	//	}
+	//}
+	//return numbers[0]
+
+	// 二分查找
+	// 左右两个下标
+	var x, y = 0, len(numbers) - 1
+	for x < y {
+		var m = (x + y) / 2
+		index := numbers[m]
+		if index > numbers[y] {
+			x = m + 1
+		} else if index < numbers[y] {
+			y = m
+		} else {
+			y = y - 1
 		}
 	}
-	return numbers[0]
+
+	return numbers[x]
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
