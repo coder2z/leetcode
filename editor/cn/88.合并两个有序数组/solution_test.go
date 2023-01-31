@@ -98,17 +98,30 @@ func merge(nums1 []int, m int, nums2 []int, n int) {
 	//copy(nums1, rsp)
 
 	// 双指针+无零时变量
+	if m == 0 {
+		copy(nums1, nums2)
+		return
+	}
 	var p, pp = m - 1, n - 1
-	var i = len(nums1) - 1
+	var i = m + n - 1
 	for {
-		if nums1[p] > nums2[pp] {
+		if p < 0 && pp < 0 {
+			break
+		}
+		if p == -1 {
+			nums1[i] = nums2[pp]
+			pp--
+		} else if pp == -1 {
 			nums1[i] = nums1[p]
 			p--
-			i--
+		} else if nums1[p] > nums2[pp] {
+			nums1[i] = nums1[p]
+			p--
 		} else {
-			nums1[i] = nums1[pp]
+			nums1[i] = nums2[pp]
 			pp--
 		}
+		i--
 	}
 }
 
